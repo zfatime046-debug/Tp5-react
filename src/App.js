@@ -1,24 +1,31 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import { UserContext } from './UtilisateurContext';
+import FormulaireControle from './FormulaireControle';
+import FormulaireNonControle from './FormulaireNonControle';
+import TemperatureConvertor from './TemperatureConvertor';
+import Profil from './Profil';
 import './App.css';
 
 function App() {
+  const [user, setUser] = useState({
+    nom: 'Alice',
+    connecte: true
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContext.Provider value={{ user, setUser }}>
+      <div>
+        <h1>TP React débutant</h1>
+        <h2>Formulaire Contrôlé</h2>
+        <FormulaireControle />
+        <h2>Formulaire Non-Contrôlé</h2>
+        <FormulaireNonControle />
+        <h2>Lifting State Up</h2>
+        <TemperatureConvertor />
+        <h2>Profil Utilisateur</h2>
+        <Profil />
+      </div>
+    </UserContext.Provider>
   );
 }
 
